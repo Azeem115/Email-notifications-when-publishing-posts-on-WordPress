@@ -26,7 +26,6 @@ function announcement($field) {
 			}
 			$class_ids = join( ", ", $classes_ids );
 			$class = join( ", ", $classes );
-			//var_dump($class_ids);
 
 			$email_results = $wpdb->get_results( "SELECT * FROM parent_email WHERE user_id IN (".$class_ids.")" );
 			if ( !empty($email_results) ) {
@@ -43,9 +42,7 @@ function announcement($field) {
 			ob_end_clean();
 
 			if(isset( $_REQUEST['message'])) {
-				//print_r($_REQUEST['message']);
 				$to = 'info@example.com';
-				//: '.$class
 				$subject = $subject_text.'Check Our New Announcement';
 				$body = $MessageTemplate;
 				//$headers[] = array('Content-Type: text/html; charset=UTF-8');
@@ -55,8 +52,7 @@ function announcement($field) {
 				remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
 			}
 
-			//mv_optin_mail();
-			//<p><input type='submit' class='button' value='Notify the user'></p>
+			mv_optin_mail();
 			$field['message'] = "
 				<p><strong>Please upload using the below options.</strong></p>
 				<div style='display:none;'><input type='text' name='message' value='Message' readonly='readonly' /></div>
